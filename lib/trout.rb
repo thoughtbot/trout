@@ -1,0 +1,2 @@
+require 'trout/cli'
+
