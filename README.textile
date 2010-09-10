@@ -46,3 +46,47 @@ h2. Author
 
 Copyright 2010 Joe Ferris
 
+<pre>
+                                                ;t                                                  
+                                              jfLLf                                                 
+                                             tLfGfGL                                                
+                                           tLjjEffGDt                                               
+                                          fjfjfffLfGL;                                              
+                                         GffffLLLLLGLGGGGLDL;                                       
+                                        .GfffLLGGGLDLfffffGLGEGGLGf                                 
+                                         :GGGDGLLLLGfLfffGLELEfLfLGLLG                              
+                                     ffDLLLDGLffDDjjjjjLGffEfLLfELGGLLGL,                           
+                                tLfffGfjjLfffjjjjjjjjjjjjjLjDffLELffLLLfLDG                         
+                    jj:      ffLjjGtiittfitGifttfftttDtjtjGtDjjGjjjLfLjffffLG                       
+                    jDGj  GDjtjGi;;;t;tt,,it;;Liij;iiGtttttiftLtjjtjjjffffLfffL.                    
+                     ,fLfftjti,;:..:.:.:,G;,G,i;,;t;tijtititLtitjftjGttjjLDffLLLD                   
+                    tjfjL;,:..i.,. .: t::i,,j:,;;;;ii;;tii;fiiDitttGtitttfjjjfDfLG                  
+                  Lfffij....    .i .;:..;;j,;i,,i;;;;t;iGiiiDititiLijttftijttLjfGLGt                
+  ;Gf;          fLfjj,,:tt...::,:,::,G,,,fti;iiiti;iiititftjttttjtitiftjiftititfLGLDD               
+ fEKDGELt     LLDt;;;;,,,,t,i;ii;;;;i;,iittttttjtjjjtttttttjjttjjjjLjtttitiGtGtffiLGDD,             
+  DDGGGffL,ijLLii;jji;titifijjtiti;ifi;i;ij;ttt;tttijtttDtttjjttjjjfjjfjDjttitjGjGGGDEDD.           
+  KGDLffLLfLjiijiiijtttjjjjjttiti;ttt;;ttit,i;i;titittjttfttGitDttjjjjjttjjjtffjffjGLDDDDE:         
+  EGDLLEGLftLtLtiLjtLjjjjttittiiiiititittiiiittijititttjtitftttittjtttjffjfffjjfLLjLLLGGGEDD        
+  iDGLDDDGjjtEjjjtffjfjjjttjjittitttit;tiii;tttttitiijtiittjtttttttGttGjtjffjffLfifLffGGGDGEEKj     
+   DGGGGGLfLfjfjjfjjjtttjjjtjttjttjjttitiittiiittitttiiitttttjtjjtititjttjfLLffGtffLffLLLGGDGGGE    
+   GGEGLLffjjjfDjfjfjjjjfffffjjtttjttitititttttjttttitttttjjjtitjtfttttjfftGLLGffLLLGGLLtjfffGLLL.  
+    LDDGGLfLfffjjtjfLD. ;LLffLLfjjtjtttitittitttttittti;tttiitttttttttjjfffLLLLfjLGLLGLDLffjffLjtL: 
+    KDLEGGjfjfjjffG    ttjtLttjfLffjjtttttjttttjttttttjtttttiittttttttjjjLLLGLtLfLLLLLGEGGftLjjt;t  
+    jELDEfffjjffj      tttjjtjfitjfffjjjjjjjjjjjtjtttjtttttttttttjjtjjjfftfGLL;GLGLLLLGLf;tLj,G.    
+     GDDDLfffjfj       ,ittfjfit   GLfLLLLLLLLLffjttttttttttttttttttjjfjfjjfLGiGLGLLffj;,LjiiG      
+     KGKGDLffff         ;iitjff          .fGLGGGijjjjjjttttttttttttttjjfLff,LGjLGDGLLi,;fftDG       
+     DELLfjLLL          ,;ijff                DiftjjLffjjjjtttttttjjjjfffjD,itGfGLLfj:tLjtfG        
+     ;EfEELfLj          ,;itj                Ljitt EDfLGLffjjjjjjjjjjffLjjtD:fLGijftifjtt;j;t.t.:;t 
+      LfKfGDG           :;ij                .,tttfi      :fLLLLLfffffffLfftGGjfffEGGftfi;i;:iLjjit  
+      tfDffDf            :i                 ,;;itft           ,LLLLLGLfLLGfGGLi.,tKKDffLLGDDGLLL    
+       GLEfDf                                ;;itjj                  jGGGGDfLLGL.:tjGLLLG,          
+       DDGDGL                                ;;iijj                 tjLGGDDKKKKDLGt,: .             
+       jfGEj                                  ,;it:                 tjffLGDLKKKWKK                  
+        GEfL                                  .:;;                  tjjffLGjEKEEKKK                 
+        GLf,                                    .                   ;jjjjfLfEEEEEKW                 
+        .Lf                                                         .tjjjjfiDDEEEEK                 
+         L                                                           ttjjjf  LEEEE:                 
+                                                                      tjjjf    ;ED                  
+                                                                       ittj                         
+                                                                         :
+</pre>
