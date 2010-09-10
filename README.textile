@@ -1,0 +1,48 @@
+h1. Trout
+
+So your common files can swim upstream.
+
+h2. Synopsis
+
+Trout allows you to maintain a base version of special files (like Gemfile) in
+one repository, and then syncronize just that file with several other
+repositories. This means that you can update your Gemfile in the master
+repository, and then get the latest of all the common gems that you use in each
+project just by running "trout update Gemfile".
+
+h2. Installation
+
+<pre>
+gem install trout
+</pre>
+
+h2. Usage
+
+Once you have a master repository set up containing the file you want to
+syncronize, you can check out that file anywhere using trout:
+
+<pre>
+trout checkout Gemfile git://github.com/someurl
+</pre>
+
+If you update the file in your master repository and want to get the changes,
+you can use the update command:
+
+<pre>
+trout update Gemfile
+</pre>
+
+If there are any conflicts, trout will help you resolve them by merging the two
+trees using diff3.
+
+h2. Why
+
+I wrote this primarily to manage Gemfiles between projects, hoping to avoid
+using an "ancestor" git repository that gets dumped into the git history of
+every new project. This also solves the "multiple inheritance" problem of git
+repositories if you want to manage different files from different sources.
+
+h2. Author
+
+Copyright 2010 Joe Ferris
+
