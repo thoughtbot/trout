@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
     s.name        = %q{trout}
-    s.version     = '0.1'
+    s.version     = '0.2'
     s.summary     = %q{So your common files can swim upstream.}
     s.description = %q{Trout allows you to maintain a base version of special
       files (like Gemfile) in one repository, and then syncronize just that
