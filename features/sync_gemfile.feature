@@ -1,6 +1,5 @@
 Feature: sync a Gemfile between two repositories
 
-  @puts @announce
   Scenario: sync a Gemfile
     Given a directory named "upstream_repo"
     And a directory named "child_repo"
