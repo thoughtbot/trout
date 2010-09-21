@@ -19,7 +19,10 @@ module Trout
 
     def update
       checkout(previous_git_url)
-      merge_to_destination
+      unless up_to_date?
+        merge_to_destination
+        write_url_and_version
+      end
     ensure
       cleanup
     end
@@ -76,7 +79,7 @@ module Trout
     end
 
     def checked_out_version
-      git_command("rev-parse HEAD")
+      git_command("rev-parse master")
     end
 
     def checkout_last_version
@@ -93,6 +96,10 @@ module Trout
 
     def previous_git_version
       version_list.version_for(filename)
+    end
+
+    def up_to_date?
+      previous_git_version == checked_out_version
     end
 
     def version_list

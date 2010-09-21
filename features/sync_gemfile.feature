@@ -51,4 +51,19 @@ Feature: sync a Gemfile between two repositories
       gem "postgresql"
       >>>>>>> .trout/upstream
       """
-
+    When I write to "Gemfile" with:
+      """
+      source "http://rubygems.org"
+      gem "rails"
+      gem "mysql"
+      gem "redcloth"
+      """
+    When I run "trout update Gemfile"
+    And I run "cat Gemfile"
+    Then the output should contain:
+      """
+      source "http://rubygems.org"
+      gem "rails"
+      gem "mysql"
+      gem "redcloth"
+      """
