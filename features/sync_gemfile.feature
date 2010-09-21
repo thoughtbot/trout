@@ -16,6 +16,10 @@ Feature: sync a Gemfile between two repositories
     And I run "git commit -m 'Added gemfile'"
     And I cd to "../child_repo"
     And I run "trout checkout Gemfile ../upstream_repo"
+    Then the output should contain:
+      """
+      Checked out Gemfile from ../upstream_repo.
+      """
     And I run "cat Gemfile"
     Then the output should contain:
       """
@@ -39,7 +43,11 @@ Feature: sync a Gemfile between two repositories
       gem "redcloth"
       """
     When I run "trout update Gemfile"
-    And I run "cat Gemfile"
+    Then the output should contain:
+      """
+      Merged changes to Gemfile.
+      """
+    When I run "cat Gemfile"
     Then the output should contain:
       """
       source "http://rubygems.org"
@@ -59,6 +67,10 @@ Feature: sync a Gemfile between two repositories
       gem "redcloth"
       """
     When I run "trout update Gemfile"
+    Then the output should contain:
+      """
+      Gemfile already up to date.
+      """
     And I run "cat Gemfile"
     Then the output should contain:
       """

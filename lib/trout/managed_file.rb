@@ -13,15 +13,19 @@ module Trout
       checkout(git_url)
       copy_to_destination
       write_url_and_version
+      puts "Checked out #{filename} from #{git_url}."
     ensure
       cleanup
     end
 
     def update
       checkout(previous_git_url)
-      unless up_to_date?
+      if up_to_date?
+        puts "#{filename} already up to date."
+      else
         merge_to_destination
         write_url_and_version
+        puts "Merged changes to #{filename}."
       end
     ensure
       cleanup
