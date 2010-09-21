@@ -78,3 +78,4 @@ Feature: sync a Gemfile between two repositories
       gem "mysql"
       gem "redcloth"
       """
+
