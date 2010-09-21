@@ -49,7 +49,7 @@ Feature: sync a Gemfile between two repositories
       gem "redcloth"
       =======
       gem "postgresql"
-      >>>>>>> .trout/upstream
+      >>>>>>> /tmp/upstream
       """
     When I write to "Gemfile" with:
       """

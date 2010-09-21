@@ -68,10 +68,6 @@ module Trout
       FileUtils.mkdir(working_root)
     end
 
-    def working_root
-      '.trout'
-    end
-
     def write_url_and_version
       version_list.update(filename,
                           'git_url' => checked_out_url,
@@ -103,11 +99,11 @@ module Trout
     end
 
     def version_list
-      @version_list ||= VersionList.new(working('versions'))
+      @version_list ||= VersionList.new('.trout')
     end
 
     def working(*paths)
-      File.join(working_root, *paths)
+      File.join('/tmp', *paths)
     end
 
     def enforce_newline(path)
