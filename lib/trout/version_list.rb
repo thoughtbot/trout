@@ -3,7 +3,9 @@ require 'trout/managed_file'
 
 module Trout
   class VersionList
-    attr_reader :path, :entries
+    FILE_VERSION = '1.0'
+
+    attr_accessor :path, :data, :files
 
     def initialize(path)
       @path = path
@@ -11,13 +13,13 @@ module Trout
 
     def [](filename)
       read
-      attributes = entries[filename] || { :filename => filename }
+      attributes = files[filename] || { :filename => filename }
       ManagedFile.new(attributes)
     end
 
     def []=(filename, managed_file)
       read
-      entries[filename] = managed_file.to_hash
+      files[filename] = managed_file.to_hash
       write
     end
 
@@ -29,15 +31,17 @@ module Trout
 
     def read
       if File.exist?(path)
-        @entries = YAML.load(IO.read(path))
+        self.data = YAML.load(IO.read(path))
       else
-        @entries = {}
+        self.data = { :files   => {},
+                      :version => FILE_VERSION }
       end
+      self.files = data[:files]
     end
 
     def write
       File.open(path, 'w') do |file|
-        file.write(YAML.dump(entries))
+        file.write(YAML.dump(data))
       end
     end
   end
