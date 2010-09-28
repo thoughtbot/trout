@@ -2,12 +2,13 @@ require 'fileutils'
 
 module Trout
   class ManagedFile
-    attr_accessor :filename, :git_url, :version, :latest_version
+    attr_accessor :filename, :git_url, :version, :latest_version, :source_root
 
     def initialize(attributes)
-      self.filename = attributes[:filename]
-      self.git_url  = attributes[:git_url]
-      self.version  = attributes[:version]
+      self.filename    = attributes[:filename]
+      self.git_url     = attributes[:git_url]
+      self.version     = attributes[:version]
+      self.source_root = attributes[:source_root] || '/'
     end
 
     def checkout
@@ -31,9 +32,10 @@ module Trout
     end
 
     def to_hash
-      { :filename => filename,
-        :git_url  => git_url,
-        :version  => version }
+      { :filename    => filename,
+        :git_url     => git_url,
+        :version     => version,
+        :source_root => source_root }
     end
 
     private
@@ -44,7 +46,7 @@ module Trout
     end
 
     def copy_to_destination
-      FileUtils.cp(working('git', filename), filename)
+      FileUtils.cp(working('git', source_path), filename)
       self.version = checked_out_version
     end
 
@@ -53,16 +55,16 @@ module Trout
       at_last_update = working('at_last_update')
       merge          = working('merge')
 
-      FileUtils.cp(working('git', filename), upstream)
+      FileUtils.cp(working('git', source_path), upstream)
 
       checkout_last_version
-      FileUtils.cp(working('git', filename), at_last_update)
+      FileUtils.cp(working('git', source_path), at_last_update)
 
       enforce_newline(upstream)
       enforce_newline(at_last_update)
       enforce_newline(filename)
 
-      run("diff3 -mX #{filename} #{at_last_update} #{upstream} > #{merge}")
+      run("diff3 -mE #{filename} #{at_last_update} #{upstream} > #{merge}")
       FileUtils.mv(merge, filename)
 
       self.version = latest_version
@@ -115,6 +117,10 @@ module Trout
         raise "Command failed with status #{$?}:\n#{command}\n#{output}"
       end
       output
+    end
+
+    def source_path
+      File.join(source_root, filename)
     end
   end
 end

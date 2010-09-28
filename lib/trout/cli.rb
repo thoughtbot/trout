@@ -8,19 +8,21 @@ module Trout
       new(arguments).run
     end
 
-    attr_accessor :command, :option_parser, :arguments, :managed_files
+    attr_accessor :command, :option_parser, :arguments, :managed_files, :file_attributes
 
     def initialize(arguments)
-      self.arguments     = arguments
-      self.option_parser = parse_options
-      self.managed_files = VersionList.new('.trout')
+      self.arguments       = arguments
+      self.file_attributes = {}
+      self.option_parser   = parse_options
+      self.managed_files   = VersionList.new('.trout')
     end
 
     def run
       case command
       when 'checkout'
-        file = ManagedFile.new(:filename => next_argument,
-                               :git_url  => next_argument)
+        file_attributes[:filename] = next_argument
+        file_attributes[:git_url]  = next_argument
+        file = ManagedFile.new(file_attributes)
         end_arguments
         file.checkout
         managed_files << file
@@ -52,6 +54,9 @@ module Trout
         parser.separator "Options:"
         parser.separator ""
 
+        parser.on("-s", "--source-root PATH", "Path to the file in the source repository") do |path|
+          file_attributes[:source_root] = path
+        end
         parser.on("-h", "--help", "View this help document")
 
         parser.separator ""
