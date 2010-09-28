@@ -1,5 +1,6 @@
 require 'optparse'
 require 'trout/managed_file'
+require 'trout/version_list'
 
 module Trout
   class CLI
@@ -7,24 +8,27 @@ module Trout
       new(arguments).run
     end
 
-    attr_accessor :command, :option_parser, :arguments, :file
+    attr_accessor :command, :option_parser, :arguments, :managed_files
 
     def initialize(arguments)
       self.arguments     = arguments
       self.option_parser = parse_options
+      self.managed_files = VersionList.new('.trout')
     end
 
     def run
       case command
       when 'checkout'
-        build_file
-        git_url = next_argument
+        file = ManagedFile.new(:filename => next_argument,
+                               :git_url  => next_argument)
         end_arguments
-        file.copy_from(git_url)
+        file.checkout
+        managed_files << file
       when 'update'
-        build_file
+        file = managed_files[next_argument]
         end_arguments
         file.update
+        managed_files << file
       when 'help', nil
         puts option_parser
         if arguments_left?
@@ -85,10 +89,6 @@ module Trout
 
     def end_arguments
       invalid_arguments if arguments_left?
-    end
-
-    def build_file
-      self.file = ManagedFile.new(next_argument)
     end
 
     def usage_for(command)

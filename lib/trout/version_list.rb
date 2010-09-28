@@ -1,4 +1,5 @@
 require 'yaml'
+require 'trout/managed_file'
 
 module Trout
   class VersionList
@@ -8,21 +9,20 @@ module Trout
       @path = path
     end
 
-    def git_url_for(filename)
+    def [](filename)
       read
-      entries[filename]['git_url']
+      attributes = entries[filename] || { :filename => filename }
+      ManagedFile.new(attributes)
     end
 
-    def version_for(filename)
+    def []=(filename, managed_file)
       read
-      entries[filename]['version']
-    end
-
-    def update(filename, info)
-      read
-      entries[filename] ||= {}
-      entries[filename].update(info)
+      entries[filename] = managed_file.to_hash
       write
+    end
+
+    def <<(managed_file)
+      self[managed_file.filename] = managed_file
     end
 
     private

@@ -1,45 +1,51 @@
 require 'fileutils'
-require 'trout/version_list'
 
 module Trout
   class ManagedFile
-    attr_reader :filename, :checked_out_url
+    attr_accessor :filename, :git_url, :version, :latest_version
 
-    def initialize(filename)
-      @filename = filename
+    def initialize(attributes)
+      self.filename = attributes[:filename]
+      self.git_url  = attributes[:git_url]
+      self.version  = attributes[:version]
     end
 
-    def copy_from(git_url)
-      checkout(git_url)
+    def checkout
+      clone_repository
       copy_to_destination
-      write_url_and_version
       puts "Checked out #{filename} from #{git_url}."
     ensure
       cleanup
     end
 
     def update
-      checkout(previous_git_url)
+      clone_repository
       if up_to_date?
         puts "#{filename} already up to date."
       else
         merge_to_destination
-        write_url_and_version
         puts "Merged changes to #{filename}."
       end
     ensure
       cleanup
     end
 
+    def to_hash
+      { :filename => filename,
+        :git_url  => git_url,
+        :version  => version }
+    end
+
     private
 
-    def checkout(git_url)
+    def clone_repository
       run_or_fail("git clone #{git_url} #{working('git')}")
-      @checked_out_url = git_url
+      self.latest_version = checked_out_version
     end
 
     def copy_to_destination
       FileUtils.cp(working('git', filename), filename)
+      self.version = checked_out_version
     end
 
     def merge_to_destination
@@ -58,6 +64,8 @@ module Trout
 
       run("diff3 -mX #{filename} #{at_last_update} #{upstream} > #{merge}")
       FileUtils.mv(merge, filename)
+
+      self.version = latest_version
     ensure
       FileUtils.rm_rf(upstream)
       FileUtils.rm_rf(at_last_update)
@@ -65,17 +73,10 @@ module Trout
 
     def cleanup
       FileUtils.rm_rf(working('git'))
-      @checked_out_url = nil
     end
 
     def prepare_working_directory
       FileUtils.mkdir(working_root)
-    end
-
-    def write_url_and_version
-      version_list.update(filename,
-                          'git_url' => checked_out_url,
-                          'version' => checked_out_version)
     end
 
     def checked_out_version
@@ -83,27 +84,15 @@ module Trout
     end
 
     def checkout_last_version
-      git_command("checkout #{previous_git_version}")
+      git_command("checkout #{version}")
     end
 
     def git_command(command)
       run_or_fail("git --git-dir=#{working('git/.git')} --work-tree=#{working('git')} #{command}").strip
     end
 
-    def previous_git_url
-      version_list.git_url_for(filename)
-    end
-
-    def previous_git_version
-      version_list.version_for(filename)
-    end
-
     def up_to_date?
-      previous_git_version == checked_out_version
-    end
-
-    def version_list
-      @version_list ||= VersionList.new('.trout')
+      version == latest_version
     end
 
     def working(*paths)
