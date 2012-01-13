@@ -2,6 +2,12 @@ h1. Trout
 
 So your common files can swim upstream.
 
+h2. DEPRECATED
+
+This gem is now deprecated. We no longer use it, and therefore do not maintain it.
+
+If you have a use for it and wish to maintain it please "let us know":mailto:support@thoughtbot.com .
+
 h2. Synopsis
 
 Trout allows you to maintain a base version of special files (like Gemfile) in
